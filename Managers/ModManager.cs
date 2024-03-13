@@ -18,7 +18,7 @@ internal static partial class ModManager
         (uint)NoteType.Press
     ];
 
-    [PnlMenuToggle("StricterJudgeToggle", "Stricter Judge", nameof(IsEnabled))]
+    [PnlMenuToggle("StricterJudgeToggle", "Stricter Judge", nameof(SettingsManager.IsEnabled))]
     private static GameObject EnabledToggle { get; set; }
 
     internal static bool UpdateNoteJudge(ref MusicData musicData)
