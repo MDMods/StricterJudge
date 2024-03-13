@@ -11,14 +11,14 @@ using static ModManager;
 using static SettingsManager;
 
 [HarmonyPatch]
-internal class VictoryPatch
+internal static class VictoryPatch
 {
-    private static IEnumerable<MethodBase> TargetMethods()
+    internal static IEnumerable<MethodBase> TargetMethods()
     {
         return typeof(PnlVictory).GetMethods().Where(m => m.Name.Equals(nameof(PnlVictory.OnVictory)));
     }
 
-    private static void Postfix(PnlVictory __instance)
+    internal static void Postfix(PnlVictory __instance)
     {
         if (!IsEnabled) return;
 

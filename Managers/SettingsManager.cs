@@ -16,10 +16,10 @@ internal static class SettingsManager
         set => _isEnabled.Value = value;
     }
 
-    internal static PerfectRangeClass PerfectLeftRange { get; set; }
-    internal static PerfectRangeClass PerfectRightRange { get; set; }
-    internal static GreatRangeClass GreatLeftRange { get; set; }
-    internal static GreatRangeClass GreatRightRange { get; set; }
+    internal static PerfectRangeClass PerfectLeftRange { get; private set; }
+    internal static PerfectRangeClass PerfectRightRange { get; private set; }
+    internal static GreatRangeClass GreatLeftRange { get; private set; }
+    internal static GreatRangeClass GreatRightRange { get; private set; }
 
     internal static void Load()
     {
@@ -82,7 +82,7 @@ internal static class SettingsManager
             set => _localRange.Value = value;
         }
 
-        internal int RangeMs => LocalRange;
+        private int RangeMs => LocalRange;
         internal Decimal RangeDec { get; private set; }
 
         private void BaseRangeEntry(MelonPreferences_Category category, int minRange, int maxRange)
@@ -106,7 +106,7 @@ internal static class SettingsManager
             Melon<Main>.Logger.Warning(warningMessage);
         }
 
-        protected void LoadEntry(MelonPreferences_Category category)
+        private void LoadEntry(MelonPreferences_Category category)
         {
             BaseRangeEntry(category, MinRange, MaxRange);
             InitEntryValue(MinRange, MaxRange);

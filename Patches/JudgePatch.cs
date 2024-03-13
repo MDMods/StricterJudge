@@ -11,7 +11,7 @@ using static SettingsManager;
 [HarmonyPatch(typeof(StageBattleComponent), nameof(StageBattleComponent.GetMusicDataFromStageInfo))]
 internal static class JudgePatch
 {
-    private static void Postfix(ref Il2CppSystem.Collections.Generic.List<MusicData> __result)
+    internal static void Postfix(ref Il2CppSystem.Collections.Generic.List<MusicData> __result)
     {
         if (!IsEnabled) return;
 
