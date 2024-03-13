@@ -28,6 +28,8 @@ Decimals
 ## Range Explanation
 
 Muse Dash's default timing window looks something like this:
+![Table1.png](Media/Table1.png)
+<!--
 <style>
     .tb td { text-align: center }
     .gr { color: #FF9600 }
@@ -62,6 +64,7 @@ Muse Dash's default timing window looks something like this:
         <td>80ms</td>
     </tr>
 </table>
+-->
 
 * **Left** means an **early** hit.
 * **Right** means a **late** hit.
@@ -86,6 +89,8 @@ If you have the following settings:
 
 Your timing window will look like this:
 
+![Table2.png](Media/Table2.png)
+<!--
 <table class="tb">
     <tr>
         <th class="em"></th>
@@ -114,6 +119,7 @@ Your timing window will look like this:
         <td>5ms</td>
     </tr>
 </table>
+-->
 
 ## In-game screenshots
 
