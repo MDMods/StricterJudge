@@ -1,14 +1,14 @@
-﻿using HarmonyLib;
+﻿using System.Reflection;
+using HarmonyLib;
 using Il2Cpp;
 using MuseDashMirror.Extensions;
-using System.Reflection;
-using UnityEngine;
+using StricterJudge.Managers;
 using Object = UnityEngine.Object;
 
 namespace StricterJudge.Patches;
 
-using static Managers.ModManager;
-using static Managers.SettingsManager;
+using static ModManager;
+using static SettingsManager;
 
 [HarmonyPatch]
 internal class VictoryPatch
@@ -22,9 +22,9 @@ internal class VictoryPatch
     {
         if (!IsEnabled) return;
 
-        Transform parent = __instance.m_CurControls.highScoreTxt.transform.parent;
-        GameObject baseGo = Object.Instantiate(parent.gameObject);
-        
+        var parent = __instance.m_CurControls.highScoreTxt.transform.parent;
+        var baseGo = Object.Instantiate(parent.gameObject);
+
         CreateTextObjects(baseGo, parent);
 
         baseGo.Destroy();

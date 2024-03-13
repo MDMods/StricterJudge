@@ -1,14 +1,17 @@
 # StricterJudge
+
 *Original mod by [**@Ixy**](https://github.com/lxymahatma)*.\
 Reduces the judgement timing windows to increase difficulty.
 
 ## Features
+
 * Allows changing default judge ranges.
 * Allows asymmetric judge ranges.
 * In-game [toggle](#toggle) to enable/disable the mod.
 * Displays your current ranges on the [victory screen](#victory-screen-custom-ranges-visualizer).
 
 ## Settings
+
 The config file can be found at `${Your muse dash folder}/UserData/StricterJudge.cfg`.
 
 **See [range explanation](#range-explanation) for a more detailed explanation and examples.*
@@ -23,6 +26,7 @@ Decimals
 : Decimals get truncated (ej. `37.7` &rarr; `37`).
 
 ## Range Explanation
+
 Muse Dash's default timing window looks something like this:
 <style>
     .tb td { text-align: center }
@@ -63,6 +67,7 @@ Muse Dash's default timing window looks something like this:
 * **Right** means a **late** hit.
 
 Which means the default values are:
+
 * `GreatLeftRange = 80`
 * `PerfectLeftRange = 50`
 * `PerfectRightRange = 50`
@@ -71,7 +76,9 @@ Which means the default values are:
 You can change this values to customize the timing window.
 
 ### Example
-If you have the following settings: 
+
+If you have the following settings:
+
 * `GreatLeftRange = 74.0`
 * `PerfectLeftRange = 35.0`
 * `PerfectRightRange = 17.0`
@@ -109,21 +116,27 @@ Your timing window will look like this:
 </table>
 
 ## In-game screenshots
+
 ### Toggle
+
 ![Toggle.jpg](Media/Toggle.jpg)
 
 ### Victory screen custom ranges visualizer
+
 ![VictoryRanges.jpg](Media/VictoryRanges.jpg)
 
 ![VictoryRangesHigh.jpg](Media/VictoryRangesHigh.jpg)
 
 ## Requirements
+
 * [MuseDashMirror 3.1.3](https://github.com/MDMods/MuseDashMirror/releases/latest) or higher
 
 ## Installation
+
 0. Make sure you have `MelonLoader 0.6.1` or higher installed and working on your Muse Dash.
 1. Download the latest release from [releases](https://github.com/Asgragrt/StricterJudge/releases/latest).
 2. Download and install `MuseDashMirror 3.1.3`.
 3. Move `StricterJudge.dll` to `${Your muse dash folder}/Mods`.
 4. Run the game once to initialize the configuration file for the mod ~~or you can write your own configuration file~~.
-5. Close the game and modify the `GreatLeftRange`, `PerfectLeftRange`, `PerfectRightRange` and `GreatRightRange` to your preferred range.
+5. Close the game and modify the `GreatLeftRange`, `PerfectLeftRange`, `PerfectRightRange` and `GreatRightRange` to your
+   preferred range.

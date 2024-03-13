@@ -1,14 +1,13 @@
 ﻿using MelonLoader;
 using StricterJudge.Managers;
 
-namespace StricterJudge
+namespace StricterJudge;
+
+public partial class Main : MelonMod
 {
-    public partial class Main : MelonMod
+    public override void OnInitializeMelon()
     {
-        public override void OnInitializeMelon()
-        {
-            SettingsManager.Load();
-            LoggerInstance.Msg("StricterJudge has loaded correctly!");
-        }
+        SettingsManager.Load();
+        LoggerInstance.Msg("StricterJudge has loaded correctly!");
     }
 }

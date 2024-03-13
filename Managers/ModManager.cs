@@ -6,13 +6,11 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace StricterJudge.Managers;
+
 using static SettingsManager;
 
 internal static partial class ModManager
 {
-    [PnlMenuToggle("StricterJudgeToggle", "Stricter Judge", nameof(SettingsManager.IsEnabled))]
-    private static GameObject EnabledToggle { get; set; }
-    
     private static readonly HashSet<uint> AcceptedEnemies =
     [
         (uint)NoteType.Monster,
@@ -20,9 +18,12 @@ internal static partial class ModManager
         (uint)NoteType.Press
     ];
 
+    [PnlMenuToggle("StricterJudgeToggle", "Stricter Judge", nameof(IsEnabled))]
+    private static GameObject EnabledToggle { get; set; }
+
     internal static bool UpdateNoteJudge(ref MusicData musicData)
     {
-        NoteConfigData noteData = musicData.noteData;
+        var noteData = musicData.noteData;
 
         if (!AcceptedEnemies.Contains(noteData.type)) return false;
 
@@ -35,21 +36,22 @@ internal static partial class ModManager
         return true;
     }
 
-    private static void CreateObjectFromRange(RangeClass rangeObject, GameObject baseGo, Transform parent, Vector3 posOffset)
+    private static void CreateObjectFromRange(RangeClass rangeObject, GameObject baseGo, Transform parent,
+        Vector3 posOffset)
     {
-        GameObject rangeGo = Object.Instantiate(baseGo, parent);
+        var rangeGo = Object.Instantiate(baseGo, parent);
         rangeGo.name = rangeObject.Name;
 
-        Text rangeText = rangeGo.GetComponent<Text>();
+        var rangeText = rangeGo.GetComponent<Text>();
         rangeText.text = rangeObject.DisplayText;
         rangeText.enabled = true;
 
-        GameObject valueGo = rangeGo.transform.GetChild(0).gameObject;
-        Text valueText = valueGo.GetComponent<Text>();
+        var valueGo = rangeGo.transform.GetChild(0).gameObject;
+        var valueText = valueGo.GetComponent<Text>();
         valueText.text = rangeObject.GetRange();
         valueText.enabled = true;
 
-        Transform transform = rangeGo.transform;
+        var transform = rangeGo.transform;
         transform.SetParent(parent.parent);
 
         transform.localPosition = parent.localPosition + posOffset;
@@ -65,9 +67,9 @@ internal static partial class ModManager
         Vector3 perfectRightOffset;
         Vector3 greatLeftOffset;
         Vector3 greatRightOffset;
-        
+
         var isHighestActive = baseGo.GetComponent<Text>().enabled;
-        
+
         if (isHighestActive)
         {
             perfectLeftOffset = new Vector3(30f, -100f, 0f);
@@ -82,7 +84,7 @@ internal static partial class ModManager
             greatLeftOffset = new Vector3(30f, -50f, 0f);
             greatRightOffset = new Vector3(210f, -5f, 0f);
         }
-        
+
         CreateObjectFromRange(GreatLeftRange, baseGo, parent, greatLeftOffset);
         CreateObjectFromRange(PerfectLeftRange, baseGo, parent, perfectLeftOffset);
         CreateObjectFromRange(PerfectRightRange, baseGo, parent, perfectRightOffset);

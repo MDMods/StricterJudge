@@ -1,4 +1,5 @@
 ﻿namespace StricterJudge.Properties;
+
 internal static class MelonBuildInfo
 {
     internal const string ModName = "StricterJudge";

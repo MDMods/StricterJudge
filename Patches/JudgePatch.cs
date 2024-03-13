@@ -1,11 +1,12 @@
 ﻿using HarmonyLib;
 using Il2CppFormulaBase;
 using Il2CppGameLogic;
+using StricterJudge.Managers;
 
 namespace StricterJudge.Patches;
 
-using static Managers.ModManager;
-using static Managers.SettingsManager;
+using static ModManager;
+using static SettingsManager;
 
 [HarmonyPatch(typeof(StageBattleComponent), nameof(StageBattleComponent.GetMusicDataFromStageInfo))]
 internal static class JudgePatch
@@ -14,7 +15,7 @@ internal static class JudgePatch
     {
         if (!IsEnabled) return;
 
-        for (int i = 0; i < __result.Count; i++)
+        for (var i = 0; i < __result.Count; i++)
         {
             MusicData musicData = __result[i];
 
