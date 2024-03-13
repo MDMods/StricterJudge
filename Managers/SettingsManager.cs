@@ -29,19 +29,19 @@ internal static class SettingsManager
         _isEnabled = mainCategory.CreateEntry(nameof(IsEnabled), true);
 
         GreatLeftRange = new GreatRangeClass("GreatLeftRange",
-            "GLeft",
+            "LGreat",
             mainCategory);
 
         PerfectLeftRange = new PerfectRangeClass("PerfectLeftRange",
-            "PLeft",
+            "LPerf",
             mainCategory);
 
         PerfectRightRange = new PerfectRangeClass("PerfectRightRange",
-            "PRight",
+            "RPerf",
             mainCategory);
 
         GreatRightRange = new GreatRangeClass("GreatRightRange",
-            "GRight",
+            "RGreat",
             mainCategory);
 
         string[] messages =
@@ -53,7 +53,7 @@ internal static class SettingsManager
             $"{GreatRightRange.GetDescription()}"
         ];
 
-        foreach (var message in messages) Melon<Main>.Logger.Msg($"{message}");
+        Melon<Main>.Logger.Msg(string.Join("\n", messages));
     }
 
     internal abstract class RangeClass
@@ -119,7 +119,7 @@ internal static class SettingsManager
 
         internal string GetDescription()
         {
-            return $"{Name}: {ToString()}";
+            return $"{Name}: {GetRange()}";
         }
     }
 

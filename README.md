@@ -129,6 +129,11 @@ Your timing window will look like this:
 
 ### Victory screen custom ranges visualizer
 
+* `LPerf` = `PerfectLeftRange`
+* `LGreat` = `GreatLeftRange`
+* `RPerf` = `PerfectRightRange`
+* `RGreat` = `GreatRightRange`
+
 ![VictoryRanges.jpg](Media/VictoryRanges.jpg)
 
 ![VictoryRangesHigh.jpg](Media/VictoryRangesHigh.jpg)
