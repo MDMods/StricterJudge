@@ -54,20 +54,4 @@ internal static class SettingsManager
 
         MelonLogger.Msg(string.Join("\r\n", messages));
     }
-
-    internal sealed class PerfectRangeClass : RangeClass
-    {
-        internal PerfectRangeClass(string name, string display, MelonPreferences_Category category)
-            : base(name, display, category, 1, 50)
-        {
-        }
-    }
-
-    internal sealed class GreatRangeClass : RangeClass
-    {
-        internal GreatRangeClass(string name, string display, MelonPreferences_Category category)
-            : base(name, display, category, 0, 80)
-        {
-        }
-    }
 }
