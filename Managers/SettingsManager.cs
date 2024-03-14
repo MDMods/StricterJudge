@@ -52,10 +52,10 @@ internal static class SettingsManager
             $"{GreatRightRange.GetDescription()}"
         ];
 
-        MelonLogger.Msg(string.Join("\n", messages));
+        MelonLogger.Msg(string.Join("\r\n", messages));
     }
 
-    internal class PerfectRangeClass : RangeClass
+    internal sealed class PerfectRangeClass : RangeClass
     {
         internal PerfectRangeClass(string name, string display, MelonPreferences_Category category)
             : base(name, display, category, 1, 50)
@@ -63,7 +63,7 @@ internal static class SettingsManager
         }
     }
 
-    internal class GreatRangeClass : RangeClass
+    internal sealed class GreatRangeClass : RangeClass
     {
         internal GreatRangeClass(string name, string display, MelonPreferences_Category category)
             : base(name, display, category, 0, 80)

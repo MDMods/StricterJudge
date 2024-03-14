@@ -2,7 +2,7 @@
 
 namespace StricterJudge;
 
-public partial class Main : MelonMod
+public sealed partial class Main : MelonMod
 {
     public override void OnInitializeMelon()
     {

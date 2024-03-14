@@ -4,15 +4,15 @@ using Decimal = Il2CppSystem.Decimal;
 
 namespace StricterJudge.Models;
 
-abstract internal class RangeClass
+internal abstract class RangeClass
 {
     private MelonPreferences_Entry<float> _localRange;
 
     private int MinRange { get; }
     private int MaxRange { get; }
 
-    internal string Name { get; init; }
-    internal string DisplayText { get; init; }
+    internal string Name { get; }
+    internal string DisplayText { get; }
 
     private int LocalRange
     {
@@ -54,7 +54,7 @@ abstract internal class RangeClass
 
         var warningMessage = $"Your selected range for {Name} is out of bounds.";
         warningMessage += $"The value has to be between {minRange} and {maxRange}.";
-        Melon<Main>.Logger.Warning(warningMessage);
+        MelonLogger.Warning(warningMessage);
     }
 
     private void LoadEntry(MelonPreferences_Category category)
