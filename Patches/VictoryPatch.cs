@@ -1,19 +1,14 @@
-﻿using System.Reflection;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Il2Cpp;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using MuseDashMirror.Extensions;
-using Object = UnityEngine.Object;
+using Object = Il2CppSystem.Object;
 
 namespace StricterJudge.Patches;
 
-[HarmonyPatch]
+[HarmonyPatch(typeof(PnlVictory), nameof(PnlVictory.OnVictory), typeof(Object), typeof(Object), typeof(Il2CppReferenceArray<Object>))]
 internal static class VictoryPatch
 {
-    internal static IEnumerable<MethodBase> TargetMethods()
-    {
-        return typeof(PnlVictory).GetMethods().Where(m => m.Name.Equals(nameof(PnlVictory.OnVictory)));
-    }
-
     internal static void Postfix(PnlVictory __instance)
     {
         if (!IsEnabled)
@@ -22,7 +17,7 @@ internal static class VictoryPatch
         }
 
         var parent = __instance.m_CurControls.highScoreTxt.transform.parent;
-        var baseGo = Object.Instantiate(parent.gameObject);
+        var baseGo = parent.gameObject.FastInstantiate();
 
         CreateTextObjects(baseGo, parent);
 

@@ -1,9 +1,10 @@
-﻿using Il2CppGameLogic;
+﻿using Il2Cpp;
+using Il2CppGameLogic;
 using Il2CppPeroPeroGames.GlobalDefines;
 using MuseDashMirror.Attributes;
+using StricterJudge.Models;
 using UnityEngine;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
 
 namespace StricterJudge.Managers;
 
@@ -40,7 +41,7 @@ internal static partial class ModManager
     private static void CreateObjectFromRange(RangeClass rangeObject, GameObject baseGo, Transform parent,
         Vector3 posOffset)
     {
-        var rangeGo = Object.Instantiate(baseGo, parent);
+        var rangeGo = baseGo.FastInstantiate(parent);
         rangeGo.name = rangeObject.Name;
 
         var rangeText = rangeGo.GetComponent<Text>();
