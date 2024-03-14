@@ -56,19 +56,9 @@ internal static class SettingsManager
         Melon<Main>.Logger.Msg(string.Join("\n", messages));
     }
 
-    internal abstract class RangeClass
+    abstract internal class RangeClass
     {
         private MelonPreferences_Entry<float> _localRange;
-
-        protected RangeClass(string name, string display, MelonPreferences_Category category,
-            int minRange, int maxRange)
-        {
-            Name = name;
-            DisplayText = display;
-            MinRange = minRange;
-            MaxRange = maxRange;
-            LoadEntry(category);
-        }
 
         private int MinRange { get; }
         private int MaxRange { get; }
@@ -85,6 +75,16 @@ internal static class SettingsManager
         private int RangeMs => LocalRange;
         internal Decimal RangeDec { get; private set; }
 
+        protected RangeClass(string name, string display, MelonPreferences_Category category,
+            int minRange, int maxRange)
+        {
+            Name = name;
+            DisplayText = display;
+            MinRange = minRange;
+            MaxRange = maxRange;
+            LoadEntry(category);
+        }
+
         private void BaseRangeEntry(MelonPreferences_Category category, int minRange, int maxRange)
         {
             _localRange = category.CreateEntry<float>(Name,
@@ -99,7 +99,10 @@ internal static class SettingsManager
 
             RangeDec = (Decimal)RangeMs / 1000;
 
-            if (originalRange == LocalRange) return;
+            if (originalRange == LocalRange)
+            {
+                return;
+            }
 
             var warningMessage = $"Your selected range for {Name} is out of bounds.";
             warningMessage += $"The value has to be between {minRange} and {maxRange}.";
@@ -112,15 +115,9 @@ internal static class SettingsManager
             InitEntryValue(MinRange, MaxRange);
         }
 
-        internal string GetRange()
-        {
-            return RangeMs + "ms";
-        }
+        internal string GetRange() => RangeMs + "ms";
 
-        internal string GetDescription()
-        {
-            return $"{Name}: {GetRange()}";
-        }
+        internal string GetDescription() => $"{Name}: {GetRange()}";
     }
 
     internal class PerfectRangeClass : RangeClass

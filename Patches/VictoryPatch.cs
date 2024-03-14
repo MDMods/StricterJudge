@@ -2,13 +2,9 @@
 using HarmonyLib;
 using Il2Cpp;
 using MuseDashMirror.Extensions;
-using StricterJudge.Managers;
 using Object = UnityEngine.Object;
 
 namespace StricterJudge.Patches;
-
-using static ModManager;
-using static SettingsManager;
 
 [HarmonyPatch]
 internal static class VictoryPatch
@@ -20,7 +16,10 @@ internal static class VictoryPatch
 
     internal static void Postfix(PnlVictory __instance)
     {
-        if (!IsEnabled) return;
+        if (!IsEnabled)
+        {
+            return;
+        }
 
         var parent = __instance.m_CurControls.highScoreTxt.transform.parent;
         var baseGo = Object.Instantiate(parent.gameObject);

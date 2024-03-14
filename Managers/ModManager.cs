@@ -7,8 +7,6 @@ using Object = UnityEngine.Object;
 
 namespace StricterJudge.Managers;
 
-using static SettingsManager;
-
 internal static partial class ModManager
 {
     private static readonly HashSet<uint> AcceptedEnemies =
@@ -18,14 +16,17 @@ internal static partial class ModManager
         (uint)NoteType.Press
     ];
 
-    [PnlMenuToggle("StricterJudgeToggle", "Stricter Judge", nameof(SettingsManager.IsEnabled))]
+    [PnlMenuToggle("StricterJudgeToggle", "Stricter Judge", nameof(IsEnabled))]
     private static GameObject EnabledToggle { get; set; }
 
     internal static bool UpdateNoteJudge(ref MusicData musicData)
     {
         var noteData = musicData.noteData;
 
-        if (!AcceptedEnemies.Contains(noteData.type)) return false;
+        if (!AcceptedEnemies.Contains(noteData.type))
+        {
+            return false;
+        }
 
         noteData.left_perfect_range = PerfectLeftRange.RangeDec;
         noteData.right_perfect_range = PerfectRightRange.RangeDec;
