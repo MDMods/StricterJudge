@@ -56,7 +56,7 @@ internal static partial class ModManager
         var transform = rangeGo.transform;
         transform.SetParent(parent.parent);
 
-        transform.localPosition = parent.localPosition + posOffset;
+        transform.localPosition = parent.localPosition + posOffset * 10;
         transform.localRotation = parent.localRotation;
         transform.localScale *= 0.5f;
 
@@ -72,19 +72,20 @@ internal static partial class ModManager
 
         var isHighestActive = baseGo.GetComponent<Text>().enabled;
 
+        // All offset's scaled down by a factor of 10 to reduce clutter of 0's
         if (isHighestActive)
         {
-            perfectLeftOffset = new Vector3(30f, -100f, 0f);
-            perfectRightOffset = new Vector3(550f, 10f, 0f);
-            greatLeftOffset = new Vector3(60f, -150f, 0f);
-            greatRightOffset = new Vector3(580f, -40f, 0f);
+            perfectLeftOffset = new Vector3(3f, -10f);
+            perfectRightOffset = new Vector3(55f, 1f);
+            greatLeftOffset = new Vector3(6f, -15f);
+            greatRightOffset = new Vector3(58f, -4f);
         }
         else
         {
-            perfectLeftOffset = new Vector3(0, 0, 0f);
-            perfectRightOffset = new Vector3(180f, 45f, 0f);
-            greatLeftOffset = new Vector3(30f, -50f, 0f);
-            greatRightOffset = new Vector3(210f, -5f, 0f);
+            perfectLeftOffset = Vector3.zero;
+            perfectRightOffset = new Vector3(18f, 4.5f);
+            greatLeftOffset = new Vector3(3f, -5f);
+            greatRightOffset = new Vector3(21f, -0.5f);
         }
 
         CreateObjectFromRange(GreatLeftRange, baseGo, parent, greatLeftOffset);
