@@ -46,9 +46,9 @@ internal static class SettingsManager
         string[] messages =
         [
             "StricterJudge range values:",
+            $"{GreatLeftRange.GetDescription()}",
             $"{PerfectLeftRange.GetDescription()}",
             $"{PerfectRightRange.GetDescription()}",
-            $"{GreatLeftRange.GetDescription()}",
             $"{GreatRightRange.GetDescription()}"
         ];
 
