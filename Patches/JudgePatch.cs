@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using Il2CppFormulaBase;
+﻿using Il2CppFormulaBase;
 using Il2CppGameLogic;
 
 namespace StricterJudge.Patches;

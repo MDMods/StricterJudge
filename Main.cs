@@ -1,6 +1,4 @@
-﻿using MelonLoader;
-
-namespace StricterJudge;
+﻿namespace StricterJudge;
 
 public sealed partial class Main : MelonMod
 {

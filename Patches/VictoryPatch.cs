@@ -1,7 +1,5 @@
-﻿using HarmonyLib;
-using Il2Cpp;
+﻿using Il2Cpp;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using MuseDashMirror.Extensions;
 using Object = Il2CppSystem.Object;
 
 namespace StricterJudge.Patches;

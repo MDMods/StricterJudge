@@ -1,5 +1,3 @@
-using MelonLoader;
-
 namespace StricterJudge.Models;
 
 internal sealed class GreatRangeClass : RangeClass

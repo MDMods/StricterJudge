@@ -1,5 +1,4 @@
-﻿using MelonLoader;
-using StricterJudge.Models;
+﻿using StricterJudge.Models;
 
 namespace StricterJudge.Managers;
 

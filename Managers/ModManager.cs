@@ -1,7 +1,6 @@
 ﻿using Il2Cpp;
 using Il2CppGameLogic;
 using Il2CppPeroPeroGames.GlobalDefines;
-using MuseDashMirror.Attributes;
 using StricterJudge.Models;
 using UnityEngine;
 using UnityEngine.UI;
