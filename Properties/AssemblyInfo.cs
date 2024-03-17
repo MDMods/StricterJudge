@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using MelonLoader;
 using Main = StricterJudge.Main;
 using static StricterJudge.Properties.MelonBuildInfo;
 

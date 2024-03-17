@@ -1,4 +1,3 @@
-using MelonLoader;
 using UnityEngine;
 using Decimal = Il2CppSystem.Decimal;
 
