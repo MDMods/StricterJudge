@@ -138,16 +138,20 @@ Your timing window will look like this:
 
 ![VictoryRangesHigh.jpg](Media/VictoryRangesHigh.jpg)
 
-## Requirements
-
-* [MuseDashMirror 3.1.3](https://github.com/MDMods/MuseDashMirror/releases/latest) or higher
-
 ## Installation
 
-0. Make sure you have `MelonLoader 0.6.1` or higher installed and working on your Muse Dash.
+### Prerequisites
+
+* Make sure you have `MelonLoader 0.6.1` or higher installed and working on your Muse Dash.
+* [MuseDashMirror 3.1.3](https://github.com/MDMods/MuseDashMirror/releases/latest) or higher
+
+### Steps
+
 1. Download the latest release from [releases](https://github.com/Asgragrt/StricterJudge/releases/latest).
 2. Download and install `MuseDashMirror 3.1.3`.
 3. Move `StricterJudge.dll` to `${Your muse dash folder}/Mods`.
 4. Run the game once to initialize the configuration file for the mod ~~or you can write your own configuration file~~.
 5. Close the game and modify the `GreatLeftRange`, `PerfectLeftRange`, `PerfectRightRange` and `GreatRightRange` to your
    preferred range.
+
+##  ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
