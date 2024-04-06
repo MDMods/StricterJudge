@@ -4,14 +4,19 @@ using StricterJudge.Properties;
 
 namespace StricterJudge.Managers;
 
+using static MelonEnvironment;
+
 internal static class SettingsManager
 {
     private const string SettingsFileName = $"{MelonBuildInfo.ModName}.cfg";
+
     private const string SettingsPath = $"UserData/{SettingsFileName}";
 
     private static readonly MelonPreferences_Entry<bool> IsEnabledEntry;
 
     private static readonly MelonPreferences_Category Category;
+
+    private static readonly FileSystemWatcher Watcher = new(UserDataDirectory);
 
     static SettingsManager()
     {
@@ -43,6 +48,18 @@ internal static class SettingsManager
             PerfectRightRange,
             GreatRightRange
         ];
+
+        // Create file at runtime if it doesn't exists
+        var absolutePath = Path.Join(UserDataDirectory, SettingsFileName);
+        if (!File.Exists(absolutePath)) MelonPreferences.Save();
+
+        // Initialize file watcher
+        Watcher.NotifyFilter = NotifyFilters.LastWrite
+                               | NotifyFilters.Size;
+
+        Watcher.Filter = SettingsFileName;
+
+        Watcher.Changed += Main.QueueReload;
     }
 
     internal static bool IsEnabled
@@ -66,7 +83,7 @@ internal static class SettingsManager
         Category.LoadFromFile(false);
 
         Ranges.ForEach(range => range.InitEntryValue());
-        
+
         string[] messages =
         [
             "StricterJudge range values:",
@@ -77,5 +94,10 @@ internal static class SettingsManager
         ];
 
         MelonLogger.Msg(string.Join("\r\n", messages));
+    }
+
+    internal static void EnableWatcherEvents()
+    {
+        Watcher.EnableRaisingEvents = true;
     }
 }
