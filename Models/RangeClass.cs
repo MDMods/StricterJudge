@@ -14,13 +14,15 @@ internal abstract class RangeClass
         DisplayText = display;
         MinRange = minRange;
         MaxRange = maxRange;
-        LoadEntry(category);
+        CreateEntry(category);
     }
 
     private int MinRange { get; }
+
     private int MaxRange { get; }
 
     internal string Name { get; }
+
     internal string DisplayText { get; }
 
     private int LocalRange
@@ -33,14 +35,14 @@ internal abstract class RangeClass
 
     internal Decimal RangeDec { get; private set; }
 
-    private void BaseRangeEntry(MelonPreferences_Category category)
+    private void CreateEntry(MelonPreferences_Category category)
     {
         _localRange = category.CreateEntry<float>(Name,
             MaxRange,
             description: $"In ms, has to be between {MinRange} and {MaxRange}");
     }
 
-    private void InitEntryValue()
+    internal void InitEntryValue()
     {
         var originalRange = LocalRange;
         LocalRange = Mathf.Clamp(LocalRange, MinRange, MaxRange);
@@ -52,12 +54,6 @@ internal abstract class RangeClass
         var warningMessage = $"Your selected range for {Name} is out of bounds.";
         warningMessage += $"The value has to be between {MinRange} and {MaxRange}.";
         MelonLogger.Warning(warningMessage);
-    }
-
-    private void LoadEntry(MelonPreferences_Category category)
-    {
-        BaseRangeEntry(category);
-        InitEntryValue();
     }
 
     internal string GetRange() => RangeMs + "ms";

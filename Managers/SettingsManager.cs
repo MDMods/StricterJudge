@@ -6,42 +6,64 @@ internal static class SettingsManager
 {
     private const string SettingsPath = "UserData/StricterJudge.cfg";
 
-    private static MelonPreferences_Entry<bool> _isEnabled;
+    private static readonly MelonPreferences_Entry<bool> IsEnabledEntry;
 
-    internal static bool IsEnabled
+    private static readonly MelonPreferences_Category Category;
+
+    static SettingsManager()
     {
-        get => _isEnabled.Value;
-        set => _isEnabled.Value = value;
-    }
+        Category = MelonPreferences.CreateCategory("StricterJudge");
+        Category.SetFilePath(SettingsPath, false, false);
 
-    internal static PerfectRangeClass PerfectLeftRange { get; private set; }
-    internal static PerfectRangeClass PerfectRightRange { get; private set; }
-    internal static GreatRangeClass GreatLeftRange { get; private set; }
-    internal static GreatRangeClass GreatRightRange { get; private set; }
-
-    internal static void Load()
-    {
-        var mainCategory = MelonPreferences.CreateCategory("StricterJudge");
-        mainCategory.SetFilePath(SettingsPath, true, false);
-
-        _isEnabled = mainCategory.CreateEntry(nameof(IsEnabled), true);
+        IsEnabledEntry = Category.CreateEntry(nameof(IsEnabled), true);
 
         GreatLeftRange = new GreatRangeClass("GreatLeftRange",
             "LGreat",
-            mainCategory);
+            Category);
 
         PerfectLeftRange = new PerfectRangeClass("PerfectLeftRange",
             "LPerf",
-            mainCategory);
+            Category);
 
         PerfectRightRange = new PerfectRangeClass("PerfectRightRange",
             "RPerf",
-            mainCategory);
+            Category);
 
         GreatRightRange = new GreatRangeClass("GreatRightRange",
             "RGreat",
-            mainCategory);
+            Category);
 
+        Ranges =
+        [
+            GreatLeftRange,
+            PerfectLeftRange,
+            PerfectRightRange,
+            GreatRightRange
+        ];
+    }
+
+    internal static bool IsEnabled
+    {
+        get => IsEnabledEntry.Value;
+        set => IsEnabledEntry.Value = value;
+    }
+
+    internal static GreatRangeClass GreatLeftRange { get; }
+
+    internal static PerfectRangeClass PerfectLeftRange { get; }
+
+    internal static PerfectRangeClass PerfectRightRange { get; }
+
+    internal static GreatRangeClass GreatRightRange { get; }
+
+    private static List<RangeClass> Ranges { get; }
+
+    internal static void Load()
+    {
+        Category.LoadFromFile(false);
+
+        Ranges.ForEach(range => range.InitEntryValue());
+        
         string[] messages =
         [
             "StricterJudge range values:",
