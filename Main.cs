@@ -4,7 +4,7 @@ namespace StricterJudge;
 
 public sealed partial class Main : MelonMod
 {
-    internal static bool IsGameMain { get; private set; }
+    private static bool IsGameMain { get; set; }
 
     private static event Action ReloadEvent;
 
