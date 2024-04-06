@@ -17,10 +17,7 @@ internal static class JudgePatch
         {
             MusicData musicData = __result[i];
 
-            if (!UpdateNoteJudge(ref musicData))
-            {
-                continue;
-            }
+            if (!UpdateNoteJudge(ref musicData)) continue;
 
             __result[i] = musicData;
         }

@@ -23,10 +23,7 @@ internal static partial class ModManager
     {
         var noteData = musicData.noteData;
 
-        if (!AcceptedEnemies.Contains(noteData.type))
-        {
-            return false;
-        }
+        if (!AcceptedEnemies.Contains(noteData.type)) return false;
 
         noteData.left_perfect_range = PerfectLeftRange.RangeDec;
         noteData.right_perfect_range = PerfectRightRange.RangeDec;
