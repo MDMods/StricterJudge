@@ -9,6 +9,14 @@ Reduces the judgement timing windows to increase difficulty.
 * Allows asymmetric judge ranges.
 * In-game [toggle](#toggle) to enable/disable the mod.
 * Displays your current ranges on the [victory screen](#victory-screen-custom-ranges-visualizer).
+* Hot reload settings.
+
+### Hot Reload
+
+Reload your settings without having to restart the game.
+
+* Change the settings inside `StricterJudge.cfg` (see [Settings](#settings)) and the save the file.
+* The settings will reload only outside the charts.
 
 ## Settings
 
@@ -148,10 +156,9 @@ Your timing window will look like this:
 ### Steps
 
 1. Download the latest release from [releases](https://github.com/Asgragrt/StricterJudge/releases/latest).
-2. Download and install `MuseDashMirror 3.1.3`.
-3. Move `StricterJudge.dll` to `${Your muse dash folder}/Mods`.
-4. Run the game once to initialize the configuration file for the mod ~~or you can write your own configuration file~~.
-5. Close the game and modify the `GreatLeftRange`, `PerfectLeftRange`, `PerfectRightRange` and `GreatRightRange` to your
+2. Move `StricterJudge.dll` to `${Your muse dash folder}/Mods`.
+3. Run the game once to initialize the configuration file for the mod ~~or you can write your own configuration file~~.
+4. Modify the `GreatLeftRange`, `PerfectLeftRange`, `PerfectRightRange` and `GreatRightRange` to your
    preferred range.
 
-##  ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
+## ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
