@@ -44,6 +44,7 @@ public sealed partial class Main : MelonMod
     private static void Reload()
     {
         Load();
+        ReloadToggle();
         Melon<Main>.Logger.Msg($"{MelonBuildInfo.ModName} reloaded successfully!");
     }
 }

@@ -34,6 +34,16 @@ internal static partial class ModManager
         return true;
     }
 
+    internal static void ReloadToggle()
+    {
+        if (!EnabledToggle) return;
+        
+        var toggleComp = EnabledToggle.GetComponent<Toggle>();
+        if (!toggleComp) return;
+        
+        toggleComp.Set(IsEnabled);
+    }
+
     private static void CreateObjectFromRange(RangeClass rangeObject, GameObject baseGo, Transform parent,
         Vector3 posOffset)
     {
