@@ -1,10 +1,13 @@
-﻿using StricterJudge.Models;
+﻿using MelonLoader.Utils;
+using StricterJudge.Models;
+using StricterJudge.Properties;
 
 namespace StricterJudge.Managers;
 
 internal static class SettingsManager
 {
-    private const string SettingsPath = "UserData/StricterJudge.cfg";
+    private const string SettingsFileName = $"{MelonBuildInfo.ModName}.cfg";
+    private const string SettingsPath = $"UserData/{SettingsFileName}";
 
     private static readonly MelonPreferences_Entry<bool> IsEnabledEntry;
 

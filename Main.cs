@@ -1,10 +1,12 @@
-﻿namespace StricterJudge;
+﻿using StricterJudge.Properties;
+
+namespace StricterJudge;
 
 public sealed partial class Main : MelonMod
 {
     public override void OnInitializeMelon()
     {
         Load();
-        LoggerInstance.Msg("StricterJudge has loaded correctly!");
+        LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
     }
 }
