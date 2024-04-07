@@ -62,10 +62,25 @@ internal static class SettingsManager
         Watcher.Changed += Main.QueueReload;
     }
 
+    private static void IsEnabledSet()
+    {
+        if (Watcher is null) return;
+
+        Watcher.EnableRaisingEvents = false;
+        
+        Category.SaveToFile(false);
+        
+        EnableWatcherEvents();
+    }
+
     internal static bool IsEnabled
     {
         get => IsEnabledEntry.Value;
-        set => IsEnabledEntry.Value = value;
+        set
+        {
+            IsEnabledEntry.Value = value;
+            IsEnabledSet();
+        }
     }
 
     internal static GreatRangeClass GreatLeftRange { get; }
