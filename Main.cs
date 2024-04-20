@@ -5,27 +5,6 @@ namespace StricterJudge;
 
 public sealed partial class Main : MelonMod
 {
-    private static event Action ReloadEvent;
-
-    public override void OnInitializeMelon()
-    {
-        Load();
-        LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
-    }
-
-    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
-    {
-        // Reload if needed outside of GameMain
-        if (SceneInfo.IsGameScene) return;
-        ReloadEvent?.Invoke();
-        ReloadEvent = null;
-    }
-
-    public override void OnLateInitializeMelon()
-    {
-        EnableWatcherEvents();
-    }
-
     internal static void QueueReload(object sender, FileSystemEventArgs e)
     {
         if (!SceneInfo.IsGameScene)
@@ -43,5 +22,32 @@ public sealed partial class Main : MelonMod
         Load();
         ReloadToggle();
         Melon<Main>.Logger.Msg($"{MelonBuildInfo.ModName} reloaded successfully!");
+    }
+
+    private static event Action ReloadEvent;
+
+    public override void OnApplicationQuit()
+    {
+        DisableWatcherEvents();
+        base.OnApplicationQuit();
+    }
+
+    public override void OnInitializeMelon()
+    {
+        Load();
+        LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
+    }
+
+    public override void OnLateInitializeMelon()
+    {
+        EnableWatcherEvents();
+    }
+
+    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+    {
+        // Reload if needed outside of GameMain
+        if (SceneInfo.IsGameScene) return;
+        ReloadEvent?.Invoke();
+        ReloadEvent = null;
     }
 }

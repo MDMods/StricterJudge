@@ -62,17 +62,6 @@ internal static class SettingsManager
         Watcher.Changed += Main.QueueReload;
     }
 
-    private static void IsEnabledSet()
-    {
-        if (Watcher is null) return;
-
-        Watcher.EnableRaisingEvents = false;
-        
-        Category.SaveToFile(false);
-        
-        EnableWatcherEvents();
-    }
-
     internal static bool IsEnabled
     {
         get => IsEnabledEntry.Value;
@@ -93,6 +82,16 @@ internal static class SettingsManager
 
     private static List<RangeClass> Ranges { get; }
 
+    internal static void DisableWatcherEvents()
+    {
+        Watcher.EnableRaisingEvents = false;
+    }
+
+    internal static void EnableWatcherEvents()
+    {
+        Watcher.EnableRaisingEvents = true;
+    }
+
     internal static void Load()
     {
         Category.LoadFromFile(false);
@@ -111,8 +110,14 @@ internal static class SettingsManager
         MelonLogger.Msg(string.Join("\r\n", messages));
     }
 
-    internal static void EnableWatcherEvents()
+    private static void IsEnabledSet()
     {
-        Watcher.EnableRaisingEvents = true;
+        if (Watcher is null) return;
+
+        Watcher.EnableRaisingEvents = false;
+
+        Category.SaveToFile(false);
+
+        EnableWatcherEvents();
     }
 }
