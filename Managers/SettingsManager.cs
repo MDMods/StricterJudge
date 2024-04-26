@@ -98,14 +98,12 @@ internal static class SettingsManager
 
         Ranges.ForEach(range => range.InitEntryValue());
 
-        string[] messages =
+        List<string> messages =
         [
-            "StricterJudge range values:",
-            $"{GreatLeftRange.GetDescription()}",
-            $"{PerfectLeftRange.GetDescription()}",
-            $"{PerfectRightRange.GetDescription()}",
-            $"{GreatRightRange.GetDescription()}"
+            "StricterJudge range values:"
         ];
+
+        messages.AddRange(Ranges.Select(val => val.GetDescription()));
 
         MelonLogger.Msg(string.Join("\r\n", messages));
     }
