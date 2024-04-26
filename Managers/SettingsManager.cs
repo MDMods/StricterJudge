@@ -1,6 +1,7 @@
 ﻿using MelonLoader.Utils;
 using StricterJudge.Models;
 using StricterJudge.Properties;
+using UnityEngine;
 
 namespace StricterJudge.Managers;
 
@@ -27,19 +28,29 @@ internal static class SettingsManager
 
         GreatLeftRange = new GreatRangeClass("GreatLeftRange",
             "LGreat",
-            Category);
+            Category,
+            new Vector3(6f, -15f),
+            new Vector3(3f, -5f)
+        );
 
         PerfectLeftRange = new PerfectRangeClass("PerfectLeftRange",
             "LPerf",
-            Category);
+            Category,
+            new Vector3(3f, -10f),
+            Vector3.zero);
 
         PerfectRightRange = new PerfectRangeClass("PerfectRightRange",
             "RPerf",
-            Category);
+            Category,
+            new Vector3(55f, 1f),
+            new Vector3(18f, 4.5f)
+        );
 
         GreatRightRange = new GreatRangeClass("GreatRightRange",
             "RGreat",
-            Category);
+            Category,
+            new Vector3(58f, -4f),
+            new Vector3(21f, -0.5f));
 
         Ranges =
         [
@@ -80,7 +91,7 @@ internal static class SettingsManager
 
     internal static GreatRangeClass GreatRightRange { get; }
 
-    private static List<RangeClass> Ranges { get; }
+    internal static List<RangeClass> Ranges { get; }
 
     internal static void DisableWatcherEvents()
     {

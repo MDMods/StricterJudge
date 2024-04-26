@@ -8,22 +8,30 @@ internal abstract class RangeClass
     private MelonPreferences_Entry<float> _localRange;
 
     protected RangeClass(string name, string display, MelonPreferences_Category category,
-        int minRange, int maxRange)
+        int minRange, int maxRange, Vector3 offsetHighest, Vector3 offset)
     {
         Name = name;
         DisplayText = display;
         MinRange = minRange;
         MaxRange = maxRange;
+        OffsetHighest = offsetHighest;
+        Offset = offset;
         CreateEntry(category);
     }
-
-    private int MinRange { get; }
-
-    private int MaxRange { get; }
 
     internal string Name { get; }
 
     internal string DisplayText { get; }
+
+    internal Decimal RangeDec { get; private set; }
+
+    private Vector3 OffsetHighest { get; }
+
+    private Vector3 Offset { get; }
+
+    private int MinRange { get; }
+
+    private int MaxRange { get; }
 
     private int LocalRange
     {
@@ -33,14 +41,13 @@ internal abstract class RangeClass
 
     private int RangeMs => LocalRange;
 
-    internal Decimal RangeDec { get; private set; }
+    internal string GetDescription() => $"{Name}: {GetRange()}";
 
-    private void CreateEntry(MelonPreferences_Category category)
-    {
-        _localRange = category.CreateEntry<float>(Name,
-            MaxRange,
-            description: $"In ms, has to be between {MinRange} and {MaxRange}");
-    }
+    internal Vector3 GetOffset(bool isHighestActive) => isHighestActive
+        ? OffsetHighest
+        : Offset;
+
+    internal string GetRange() => RangeMs + "ms";
 
     internal void InitEntryValue()
     {
@@ -56,7 +63,10 @@ internal abstract class RangeClass
         MelonLogger.Warning(warningMessage);
     }
 
-    internal string GetRange() => RangeMs + "ms";
-
-    internal string GetDescription() => $"{Name}: {GetRange()}";
+    private void CreateEntry(MelonPreferences_Category category)
+    {
+        _localRange = category.CreateEntry<float>(Name,
+            MaxRange,
+            description: $"In ms, has to be between {MinRange} and {MaxRange}");
+    }
 }
