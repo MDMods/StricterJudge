@@ -3,6 +3,8 @@
 *Original mod by [**@Ixy**](https://github.com/lxymahatma)*.\
 Reduces the judgement timing windows to increase difficulty.
 
+## ❗Check out my other [mods](https://github.com/Asgragrt/AsgraMDMods/blob/main/README.md)❗
+
 ## Features
 
 * Allows changing default judge ranges.
@@ -160,5 +162,3 @@ Your timing window will look like this:
 3. Run the game once to initialize the configuration file for the mod ~~or you can write your own configuration file~~.
 4. Modify the `GreatLeftRange`, `PerfectLeftRange`, `PerfectRightRange` and `GreatRightRange` to your
    preferred range.
-
-## ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
