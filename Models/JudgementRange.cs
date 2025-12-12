@@ -31,7 +31,7 @@ internal class JudgementRange
 
     internal string DisplayText { get; }
 
-    internal Decimal RangeDec { get; private set; }
+    internal Decimal Value => (Decimal)RangeMs / 1000;
 
     private Vector3 OffsetHighest { get; }
 

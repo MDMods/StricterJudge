@@ -30,10 +30,10 @@ internal static partial class ModManager
         if (!AcceptedEnemies.Contains(noteData.type))
             return false;
 
-        noteData.left_perfect_range = PerfectLeftRange.RangeDec;
-        noteData.right_perfect_range = PerfectRightRange.RangeDec;
-        noteData.left_great_range = GreatLeftRange.RangeDec;
-        noteData.right_great_range = GreatRightRange.RangeDec;
+        noteData.left_great_range = GreatLeftRange.Value;
+        noteData.left_perfect_range = PerfectLeftRange.Value;
+        noteData.right_perfect_range = PerfectRightRange.Value;
+        noteData.right_great_range = GreatRightRange.Value;
 
         musicData.noteData = noteData;
         return true;
