@@ -28,10 +28,12 @@ internal static partial class ModManager
 
     internal static void ReloadToggle()
     {
-        if (!EnabledToggle) return;
+        if (!EnabledToggle)
+            return;
 
         var toggleComp = EnabledToggle.GetComponent<Toggle>();
-        if (!toggleComp) return;
+        if (!toggleComp)
+            return;
 
         toggleComp.Set(IsEnabled);
     }
@@ -40,7 +42,8 @@ internal static partial class ModManager
     {
         var noteData = musicData.noteData;
 
-        if (!AcceptedEnemies.Contains(noteData.type)) return false;
+        if (!AcceptedEnemies.Contains(noteData.type))
+            return false;
 
         noteData.left_perfect_range = PerfectLeftRange.RangeDec;
         noteData.right_perfect_range = PerfectRightRange.RangeDec;
@@ -51,8 +54,12 @@ internal static partial class ModManager
         return true;
     }
 
-    private static void CreateObjectFromRange(RangeClass rangeObject, GameObject baseGo, Transform parent,
-        bool isHighestActive)
+    private static void CreateObjectFromRange(
+        JudgementRange rangeObject,
+        GameObject baseGo,
+        Transform parent,
+        bool isHighestActive
+    )
     {
         var rangeGo = baseGo.FastInstantiate(parent);
         rangeGo.name = rangeObject.Name;
@@ -69,14 +76,18 @@ internal static partial class ModManager
         var transform = rangeGo.transform;
         transform.SetParent(parent.parent);
 
-        transform.localPosition = parent.localPosition + rangeObject.GetOffset(isHighestActive) * 10;
+        transform.localPosition =
+            parent.localPosition + rangeObject.GetOffset(isHighestActive) * 10;
         transform.localRotation = parent.localRotation;
         transform.localScale *= 0.5f;
 
         transform.SetParent(parent);
     }
 
-    private static void CreateTextObject(this RangeClass rangeClass, GameObject baseGo, Transform parent,
-        bool isHighestActive) =>
-        CreateObjectFromRange(rangeClass, baseGo, parent, isHighestActive);
+    private static void CreateTextObject(
+        this JudgementRange rangeClass,
+        GameObject baseGo,
+        Transform parent,
+        bool isHighestActive
+    ) => CreateObjectFromRange(rangeClass, baseGo, parent, isHighestActive);
 }

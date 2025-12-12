@@ -26,47 +26,47 @@ internal static class SettingsManager
 
         IsEnabledEntry = Category.CreateEntry(nameof(IsEnabled), true);
 
-        GreatLeftRange = new GreatRangeClass("GreatLeftRange",
+        GreatLeftRange = JudgementRange.CreateGreatRange(
+            "GreatLeftRange",
             "LGreat",
             Category,
             new Vector3(6f, -15f),
             new Vector3(3f, -5f)
         );
 
-        PerfectLeftRange = new PerfectRangeClass("PerfectLeftRange",
+        PerfectLeftRange = JudgementRange.CreatePerfectRange(
+            "PerfectLeftRange",
             "LPerf",
             Category,
             new Vector3(3f, -10f),
-            Vector3.zero);
+            Vector3.zero
+        );
 
-        PerfectRightRange = new PerfectRangeClass("PerfectRightRange",
+        PerfectRightRange = JudgementRange.CreatePerfectRange(
+            "PerfectRightRange",
             "RPerf",
             Category,
             new Vector3(55f, 1f),
             new Vector3(18f, 4.5f)
         );
 
-        GreatRightRange = new GreatRangeClass("GreatRightRange",
+        GreatRightRange = JudgementRange.CreatePerfectRange(
+            "GreatRightRange",
             "RGreat",
             Category,
             new Vector3(58f, -4f),
-            new Vector3(21f, -0.5f));
+            new Vector3(21f, -0.5f)
+        );
 
-        Ranges =
-        [
-            GreatLeftRange,
-            PerfectLeftRange,
-            PerfectRightRange,
-            GreatRightRange
-        ];
+        Ranges = [GreatLeftRange, PerfectLeftRange, PerfectRightRange, GreatRightRange];
 
         // Create file at runtime if it doesn't exists
         var absolutePath = Path.Join(UserDataDirectory, SettingsFileName);
-        if (!File.Exists(absolutePath)) MelonPreferences.Save();
+        if (!File.Exists(absolutePath))
+            MelonPreferences.Save();
 
         // Initialize file watcher
-        Watcher.NotifyFilter = NotifyFilters.LastWrite
-                               | NotifyFilters.Size;
+        Watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size;
 
         Watcher.Filter = SettingsFileName;
 
@@ -83,15 +83,15 @@ internal static class SettingsManager
         }
     }
 
-    internal static GreatRangeClass GreatLeftRange { get; }
+    internal static JudgementRange GreatLeftRange { get; }
 
-    internal static PerfectRangeClass PerfectLeftRange { get; }
+    internal static JudgementRange PerfectLeftRange { get; }
 
-    internal static PerfectRangeClass PerfectRightRange { get; }
+    internal static JudgementRange PerfectRightRange { get; }
 
-    internal static GreatRangeClass GreatRightRange { get; }
+    internal static JudgementRange GreatRightRange { get; }
 
-    internal static List<RangeClass> Ranges { get; }
+    internal static List<JudgementRange> Ranges { get; }
 
     internal static void DisableWatcherEvents()
     {
@@ -107,12 +107,7 @@ internal static class SettingsManager
     {
         Category.LoadFromFile(false);
 
-        Ranges.ForEach(range => range.InitEntryValue());
-
-        List<string> messages =
-        [
-            "StricterJudge range values:"
-        ];
+        List<string> messages = ["StricterJudge range values:"];
 
         messages.AddRange(Ranges.Select(val => val.GetDescription()));
 
@@ -121,7 +116,8 @@ internal static class SettingsManager
 
     private static void IsEnabledSet()
     {
-        if (Watcher is null) return;
+        if (Watcher is null)
+            return;
 
         Watcher.EnableRaisingEvents = false;
 
