@@ -50,7 +50,7 @@ internal static class SettingsManager
             new Vector3(18f, 4.5f)
         );
 
-        GreatRightRange = JudgementRange.CreatePerfectRange(
+        GreatRightRange = JudgementRange.CreateGreatRange(
             "GreatRightRange",
             "RGreat",
             Category,

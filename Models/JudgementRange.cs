@@ -6,7 +6,7 @@ namespace StricterJudge.Models;
 
 internal class JudgementRange
 {
-    private MelonPreferences_Entry<float> _localRange;
+    private MelonPreferences_Entry<int> _localRange;
 
     private JudgementRange(
         string name,
@@ -57,7 +57,7 @@ internal class JudgementRange
 
     private void CreateEntry(MelonPreferences_Category category)
     {
-        _localRange = category.CreateEntry<float>(
+        _localRange = category.CreateEntry<int>(
             Name,
             MaxRange,
             description: $"In ms, has to be between {MinRange} and {MaxRange}",
