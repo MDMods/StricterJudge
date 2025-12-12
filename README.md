@@ -9,7 +9,7 @@ Reduces the judgement timing windows to increase difficulty.
 
 * Allows changing default judge ranges.
 * Allows asymmetric judge ranges.
-* In-game [toggle](#toggle) to enable/disable the mod.
+* In-game [popUp](#enabledisable-pop-up) while pressing CTRL + Key for toggling mod on and off.
 * Displays your current ranges on the [victory screen](#victory-screen-custom-ranges-visualizer).
 * Hot reload settings.
 
@@ -31,9 +31,7 @@ The config file can be found at `${Your muse dash folder}/UserData/StricterJudge
 * `PerfectLeftRange` has to be between 1ms - 50ms.
 * `PerfectRightRange` has to be between 1ms - 50ms.
 * `GreatRightRange` has to be between 0ms - 80ms.
-
-Decimals
-: Decimals get truncated (ej. `37.7` &rarr; `37`).
+* `ComboKey`, press CTRL + ${ComboKey} to turn mod on/off in-game (only outside play stage). (Triggers popup if available and console message confirming action).
 
 ## Range Explanation
 
@@ -133,9 +131,9 @@ Your timing window will look like this:
 
 ## In-game screenshots
 
-### Toggle
+### Enable/Disable pop-up
 
-![Toggle.jpg](Media/Toggle.jpg)
+![Popup.jpg](Media/Popup.png)
 
 ### Victory screen custom ranges visualizer
 
@@ -153,7 +151,6 @@ Your timing window will look like this:
 ### Prerequisites
 
 * Make sure you have `MelonLoader 0.6.1` or higher installed and working on your Muse Dash.
-* [MuseDashMirror 3.1.3](https://github.com/MDMods/MuseDashMirror/releases/latest) or higher
 
 ### Steps
 
