@@ -33,6 +33,9 @@ The config file can be found at `${Your muse dash folder}/UserData/StricterJudge
 * `GreatRightRange` has to be between 0ms - 80ms.
 * `ComboKey`, press CTRL + ${ComboKey} to turn mod on/off in-game (only outside play stage). (Triggers popup if available and console message confirming action).
 
+> [!TIP]
+> See [KeyCode](https://docs.unity3d.com/es/2017.4/ScriptReference/KeyCode.html) for valid key values.
+
 ## Range Explanation
 
 Muse Dash's default timing window looks something like this:
