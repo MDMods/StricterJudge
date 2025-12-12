@@ -39,9 +39,4 @@
             <HintPath>$(MD_DIRECTORY)\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
         </Reference>
     </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="MuseDashMirror" Version="3.1.3"/>
-    </ItemGroup>
-
 </Project>

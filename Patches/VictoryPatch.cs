@@ -4,13 +4,19 @@ using Object = Il2CppSystem.Object;
 
 namespace StricterJudge.Patches;
 
-[HarmonyPatch(typeof(PnlVictory), nameof(PnlVictory.OnVictory), typeof(Object), typeof(Object),
-    typeof(Il2CppReferenceArray<Object>))]
+[HarmonyPatch(
+    typeof(PnlVictory),
+    nameof(PnlVictory.OnVictory),
+    typeof(Object),
+    typeof(Object),
+    typeof(Il2CppReferenceArray<Object>)
+)]
 internal static class VictoryPatch
 {
     internal static void Postfix(PnlVictory __instance)
     {
-        if (!IsEnabled) return;
+        if (!IsEnabled)
+            return;
 
         try
         {
@@ -19,7 +25,7 @@ internal static class VictoryPatch
 
             CreateTextObjects(baseGo, parent);
 
-            baseGo.Destroy();
+            UnityEngine.Object.Destroy(baseGo);
         }
         catch (Exception e)
         {

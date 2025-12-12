@@ -1,5 +1,4 @@
-﻿using MuseDashMirror;
-using StricterJudge.Properties;
+﻿using StricterJudge.Properties;
 
 namespace StricterJudge;
 
@@ -7,7 +6,7 @@ public sealed partial class Main : MelonMod
 {
     internal static void QueueReload(object sender, FileSystemEventArgs e)
     {
-        if (!SceneInfo.IsGameScene)
+        if (!IsGameScene)
         {
             Reload();
             return;
@@ -20,11 +19,12 @@ public sealed partial class Main : MelonMod
     private static void Reload()
     {
         Load();
-        ReloadToggle();
         Melon<Main>.Logger.Msg($"{MelonBuildInfo.ModName} reloaded successfully!");
     }
 
     private static event Action ReloadEvent;
+
+    public static bool IsGameScene { get; private set; } = false;
 
     public override void OnApplicationQuit()
     {
@@ -45,8 +45,13 @@ public sealed partial class Main : MelonMod
 
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
+        IsGameScene = sceneName?.Equals("GameMain") ?? false;
         // Reload if needed outside of GameMain
-        if (SceneInfo.IsGameScene) return;
+        if (IsGameScene)
+        {
+            return;
+        }
+
         ReloadEvent?.Invoke();
         ReloadEvent = null;
     }

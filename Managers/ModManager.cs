@@ -16,26 +16,11 @@ internal static partial class ModManager
         (uint)NoteType.Press
     ];
 
-    [PnlMenuToggle("StricterJudgeToggle", "Stricter Judge", nameof(IsEnabled))]
-    private static GameObject EnabledToggle { get; set; }
-
     internal static void CreateTextObjects(GameObject baseGo, Transform parent)
     {
         var isHighestActive = baseGo.GetComponent<Text>().enabled;
 
         Ranges.ForEach(range => range.CreateTextObject(baseGo, parent, isHighestActive));
-    }
-
-    internal static void ReloadToggle()
-    {
-        if (!EnabledToggle)
-            return;
-
-        var toggleComp = EnabledToggle.GetComponent<Toggle>();
-        if (!toggleComp)
-            return;
-
-        toggleComp.Set(IsEnabled);
     }
 
     internal static bool UpdateNoteJudge(ref MusicData musicData)
