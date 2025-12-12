@@ -5,8 +5,6 @@ using UnityEngine;
 
 namespace StricterJudge.Managers;
 
-using static MelonEnvironment;
-
 internal static class SettingsManager
 {
     private const string SettingsFileName = $"{MelonBuildInfo.ModName}.cfg";
@@ -15,9 +13,13 @@ internal static class SettingsManager
 
     private static readonly MelonPreferences_Entry<bool> IsEnabledEntry;
 
+    private static readonly MelonPreferences_Entry<KeyCode> ComboKey;
+
     private static readonly MelonPreferences_Category Category;
 
-    private static readonly FileSystemWatcher Watcher = new(UserDataDirectory);
+    private static readonly FileSystemWatcher Watcher = new(MelonEnvironment.UserDataDirectory);
+
+    internal static KeyCode Key => ComboKey.Value;
 
     static SettingsManager()
     {
@@ -58,10 +60,16 @@ internal static class SettingsManager
             new Vector3(21f, -0.5f)
         );
 
+        ComboKey = Category.CreateEntry(
+            "ComboKey",
+            KeyCode.S,
+            description: "Ctrl + Key to toggle the mod on/off."
+        );
+
         Ranges = [GreatLeftRange, PerfectLeftRange, PerfectRightRange, GreatRightRange];
 
         // Create file at runtime if it doesn't exists
-        var absolutePath = Path.Join(UserDataDirectory, SettingsFileName);
+        var absolutePath = Path.Join(MelonEnvironment.UserDataDirectory, SettingsFileName);
         if (!File.Exists(absolutePath))
             MelonPreferences.Save();
 
